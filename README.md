@@ -192,8 +192,6 @@ App will be available at: `http://localhost:4200`
 **Harsh Sheladiya**
 - GitHub: [@snowwy692](https://github.com/snowwy692)
 - Email: harshsheladiya31@gmail.com
-- University: Lok Jagruti Kendra University, Ahmedabad
-- Course: Dot Net — Semester V (B.E. Computer Engineering)
 
 ---
 
