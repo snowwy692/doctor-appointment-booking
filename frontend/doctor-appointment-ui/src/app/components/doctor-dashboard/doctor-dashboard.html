@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2 class="mb-4">👨‍⚕️ Doctor Dashboard — {{ userName }}</h2>
+  <h4 class="mb-3">My Appointments</h4>
+  <div *ngIf="appointments.length === 0" class="alert alert-info">
+    No appointments yet.
+  </div>
+  <div class="table-responsive" *ngIf="appointments.length > 0">
+    <table class="table table-bordered table-hover">
+      <thead class="table-success">
+        <tr>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Time Slot</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let apt of appointments">
+          <td>{{ apt.patientName }}</td>
+          <td>{{ apt.appointmentDate | date:'mediumDate' }}</td>
+          <td>{{ apt.timeSlot }}</td>
+          <td><span [class]="getStatusClass(apt.status)">{{ apt.status }}</span></td>
+          <td>
+            <button
+              class="btn btn-success btn-sm me-1"
+              *ngIf="apt.status === 'Pending'"
+              (click)="updateStatus(apt.id, 'Confirmed')">
+              Confirm
+            </button>
+            <button
+              class="btn btn-secondary btn-sm"
+              *ngIf="apt.status === 'Confirmed'"
+              (click)="updateStatus(apt.id, 'Done')">
+              Mark Done
+            </button>
+            <span *ngIf="apt.status === 'Cancelled' || apt.status === 'Done'" class="text-muted">
+              No action
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

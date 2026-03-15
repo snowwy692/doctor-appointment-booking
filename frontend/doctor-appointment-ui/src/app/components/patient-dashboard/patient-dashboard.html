@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <h2 class="mb-4">👤 Welcome, {{ userName }}!</h2>
+  <h4 class="mb-3">My Appointments</h4>
+  <div *ngIf="appointments.length === 0" class="alert alert-info">
+    No appointments found. <a href="/doctors">Book one now!</a>
+  </div>
+  <div class="table-responsive" *ngIf="appointments.length > 0">
+    <table class="table table-bordered table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th>Doctor</th>
+          <th>Specialization</th>
+          <th>Date</th>
+          <th>Time Slot</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let apt of appointments">
+          <td>{{ apt.doctorName }}</td>
+          <td>{{ apt.specialization }}</td>
+          <td>{{ apt.appointmentDate | date:'mediumDate' }}</td>
+          <td>{{ apt.timeSlot }}</td>
+          <td><span [class]="getStatusClass(apt.status)">{{ apt.status }}</span></td>
+          <td>
+            <button
+              class="btn btn-danger btn-sm"
+              *ngIf="apt.status !== 'Cancelled' && apt.status !== 'Done'"
+              (click)="cancelAppointment(apt.id)">
+              Cancel
+            </button>
+            <span *ngIf="apt.status === 'Cancelled' || apt.status === 'Done'" class="text-muted">
+              No action
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

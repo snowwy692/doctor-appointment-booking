@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h3 class="mb-4">📅 Book Appointment</h3>
+          <div *ngIf="doctor" class="alert alert-info">
+            <strong>Doctor:</strong> {{ doctor.name }}<br>
+            <strong>Specialization:</strong> {{ doctor.specialization }}<br>
+            <strong>Fees:</strong> ₹{{ doctor.fees }}
+          </div>
+          <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+          <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+          <div class="mb-3">
+            <label class="form-label">Select Date</label>
+            <input type="date" class="form-control" [(ngModel)]="appointmentDate" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Select Time Slot</label>
+            <select class="form-select" [(ngModel)]="timeSlot">
+              <option value="">-- Select Time --</option>
+              <option *ngFor="let slot of timeSlots" [value]="slot">{{ slot }}</option>
+            </select>
+          </div>
+          <button class="btn btn-primary w-100" (click)="bookAppointment()">
+            Confirm Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
