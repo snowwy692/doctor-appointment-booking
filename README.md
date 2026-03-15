@@ -174,7 +174,7 @@ App will be available at: `http://localhost:4200`
 
 ---
 
-## 📸 Pages
+## 📸  Pages
 
 | Page | Description |
 |---|---|
